@@ -24,8 +24,11 @@ public:
 	UAuraAttributeSet();
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
+// ШАГ 2. Базовое описание свойств переменной для UE
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Health, Category = "Vital Attributes")
+// ШАГ 1. Назначаем переменную
 	FGameplayAttributeData Health;
+// ЩАГ 3. Макрос доступа к вспомогательным функциям обработки переменной	
 	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, Health);
 
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_MaxHealth, Category = "Vital Attributes")
@@ -40,6 +43,7 @@ public:
 	FGameplayAttributeData MaxMana;
 	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, MaxMana);
 
+// ШАГ 4. Определяем OnRep функцию для подготовки к репликации (шаг 5 в срр)
 	UFUNCTION()
 	void OnRep_Health(const FGameplayAttributeData& OldHealth) const;
 
